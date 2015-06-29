@@ -4,6 +4,15 @@ class Api::V1::AuthorsController < ApplicationController
     render json: author
   end
 
+  def create
+    author = Author.new(authors_params)
+    if author.save
+      render json: author.decorate.author_info
+    else
+      render json: { errors: author.errors }
+    end
+  end
+
   def show
     author = Author.find_by(id: params[:id])
     render json: author.decorate.author_info
