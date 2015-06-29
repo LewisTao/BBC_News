@@ -10,6 +10,9 @@ class Author < ActiveRecord::Base
   validates_confirmation_of :password
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, :message => 'wrong email address'
 
+  # Association
+  has_many :articles
+
   # Before filter
   before_create :email_downcase
   before_create :generate_authenticate_token!
