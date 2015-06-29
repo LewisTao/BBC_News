@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :authors, :controllers => {:registrations => "api/v1/authors"}
       resources :authors, only: [:index, :show]
+      resources :sessions, only: [:create, :destroy]
     end
 
   end

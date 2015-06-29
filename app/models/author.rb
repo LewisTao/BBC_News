@@ -12,9 +12,17 @@ class Author < ActiveRecord::Base
 
   # Before filter
   before_create :email_downcase
+  before_create :generate_authenticate_token!
+
+  # Custom Method
+  def generate_authenticate_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
+  end
 
   private
-  # Custom Method
+
   def email_downcase
     email.downcase! if email.present?
   end
