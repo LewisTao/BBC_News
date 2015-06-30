@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Errors handling and errors notification
+gem 'airbrake', '~> 4.3.0'
+
 # For Authenticate
 gem 'devise', '~> 3.5.1'
 
