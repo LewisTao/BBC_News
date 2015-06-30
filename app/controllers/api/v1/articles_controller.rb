@@ -1,5 +1,10 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :authenticate_with_token!
+  #before_action :authenticate_with_token!
+
+  def index
+    articles= Article.all.order('created_at DESC')
+    render json: articles
+  end
 
   def show
     article = Article.find_by(id: params[:id])
