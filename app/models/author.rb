@@ -15,13 +15,10 @@ class Author < ActiveRecord::Base
 
   # Before filter
   before_create :email_downcase
-  before_create :generate_authenticate_token!
 
-  # Custom Method
-  def generate_authenticate_token!
-    begin
-      self.auth_token = Devise.friendly_token
-    end while self.class.exists?(auth_token: auth_token)
+  def self.authenticate(params)
+    credentials = params.slice(:email, :password)
+    find_for_database_authentication(credentials)
   end
 
   private

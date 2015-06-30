@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # For OAuth
 gem 'doorkeeper', '~> 2.2.1'
+gem 'oauth2', '~> 1.0.0'
 
 # Errors handling and errors notification
 gem 'airbrake', '~> 4.3.0'
