@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: BBC_News_production
-  username: BBC_News
-  password: <%= ENV['BBC_NEWS_DATABASE_PASSWORD'] %>
