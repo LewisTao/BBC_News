@@ -1,11 +1,11 @@
 class Api::V1::ArticlesController < Api::V1::BaseController
   def index
     articles = current_author.articles.order('created_at DESC')
-    render json: articles
+    render json: articles.map { |a| a.decorate.article_show }
   end
 
   def show
-    article = Article.find_by(id: params[:id])
+    article = Article.find(id: params[:id])
     render json: article.decorate.article_show
   end
 

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :article do
-    title "MyString"
-description "MyText"
-author_id "MyString"
+    title {FFaker::Product.product_name}
+    description {FFaker::HipsterIpsum.paragraphs}
+    author_id {FFaker::SSNSE.ssn}
   end
 
 end
