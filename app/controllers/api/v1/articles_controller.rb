@@ -5,7 +5,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def show
-    article = Article.find(id: params[:id])
+    article = Article.find_by(id: params[:id])
     render json: article.decorate.article_show
   end
 
@@ -19,9 +19,24 @@ class Api::V1::ArticlesController < Api::V1::BaseController
     end
   end
 
+  def update
+    article = current_author.articles.find_by(id: params[:id])
+    if article.update(articles_params)
+      render json: article.decorate.article_show
+    else
+      render json: { errors: article.errors }
+    end
+  end
+
+  def destroy
+    article = current_author.articles.find(params[:id])
+    article.destroy
+    head 204
+  end
+
   private
   def articles_params
-    params.require(:article).permit(:title, :description)
+    params.require(:articles).permit(:title, :description)
   end
 
 end

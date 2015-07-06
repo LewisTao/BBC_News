@@ -13,3 +13,8 @@ def normalize_json(obj)
 
   obj.is_a?(String) ? obj : obj.to_json
 end
+
+
+def oauth_verify_token(access_token)
+  request.headers['Authorization'] = "Bearer #{access_token.token}"
+end

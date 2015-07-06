@@ -3,7 +3,8 @@ class ArticleDecorator < Draper::Decorator
 
   def article_show
     as_json(
-      only: [:id, :title, :description]
+      only: [:id, :title, :description],
+      include: {author: {only: [:name]}}
     )
   end
 
