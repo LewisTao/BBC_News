@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json }, path: '/' do
     namespace :v1 do
       resources :articles, only: [:show, :create, :index, :update, :destroy]
-      resources :authors, only: [:index, :show, :destroy, :create]
+      resources :authors, only: [:show, :destroy, :create]
     end
 
   end

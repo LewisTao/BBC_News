@@ -1,6 +1,7 @@
 class Api::V1::ArticlesController < Api::V1::BaseController
+  before_action :doorkeeper_authorize!, except: [:index]
   def index
-    articles = current_author.articles.order('created_at DESC')
+    articles = Article.all.order('created_at DESC').page(params[:page]).per_page(5)
     render json: articles.map { |a| a.decorate.article_show }
   end
 
