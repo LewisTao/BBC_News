@@ -16,7 +16,7 @@ class Api::V1::AuthorsController < Api::V1::BaseController
   end
 
   def show
-    author = Author.find_by(id: params[:id])
+    author = Author.find(params[:id])
     render json: author.decorate.author_info
   end
 

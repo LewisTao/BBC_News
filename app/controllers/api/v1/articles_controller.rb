@@ -1,12 +1,12 @@
 class Api::V1::ArticlesController < Api::V1::BaseController
-  before_action :doorkeeper_authorize!, except: [:index]
+  before_action :doorkeeper_authorize!, except: [:index, :show]
   def index
     articles = Article.order('created_at DESC').page(params[:page]).per_page(5)
     render json: articles.map { |a| a.decorate.article_show }
   end
 
   def show
-    article = Article.find_by(id: params[:id])
+    article = Article.find(params[:id])
     render json: article.decorate.article_show
   end
 
@@ -21,7 +21,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def update
-    article = current_author.articles.find_by(id: params[:id])
+    article = current_author.articles.find(params[:id])
     if article.update(articles_params)
       render json: article.decorate.article_show
     else
