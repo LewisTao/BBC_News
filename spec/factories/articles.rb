@@ -4,5 +4,4 @@ FactoryGirl.define do
     description {FFaker::HipsterIpsum.paragraph}
     author_id {FFaker::SSNSE.ssn}
   end
-
 end

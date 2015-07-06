@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Sample Author Account
+author_1 = FactoryGirl.create :author
+author_2 = FactoryGirl.create :author
+
+# Sample Article
+10.times do
+  article = FactoryGirl.create :article, author_id: author_1.id
+end
+
+10.times do
+  article = FactoryGirl.create :article, author_id: author_2.id
+end
