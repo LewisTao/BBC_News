@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+# Code coverage
+gem 'simplecov', '~> 0.10.0'
+
 # For OAuth
 gem 'doorkeeper', '~> 2.2.1'
 gem 'oauth2', '~> 1.0.0'
