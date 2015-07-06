@@ -7,16 +7,16 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
   describe "GET #index" do
     before(:each) do
       oauth_verify_token(access_token)
-      5.times do
+      21.times do
         @article = FactoryGirl.create :article, author_id: owner.id
       end
-      get :index
+      get :index, page: 5
 
     end
 
-    it "should return all article" do
+    it "should return all article with pagination" do
       article_response= JSON.parse(response.body, symbolize_names: true)
-      expect(article_response.size).to eql 5
+      expect(article_response.count).to eql 1
     end
   end
 
