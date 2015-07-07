@@ -7,5 +7,5 @@ class Article < ActiveRecord::Base
   has_many :article_images, dependent: :destroy
 
   # Nested Attributes
-  accepts_nested_attributes_for :article_images
+  accepts_nested_attributes_for :article_images  #, :reject_if => lambda { |image| image['article_image'].nil? }
 end

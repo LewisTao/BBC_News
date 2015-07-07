@@ -11,22 +11,14 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def create
-    article = current_author.articles.build(articles_params)
-    article.article_images.build(article_images_params.merge!(author_id: current_author.id) )
-    if article.save
-      render json: article.decorate.article_show
-    else
-      render json: { errors: article.errors }
-    end
+
+    article = ArticleService.create_article_and_image(articles_params, current_author, images_params)
+    render json: article
   end
 
   def update
-    article = current_author.articles.find(params[:id])
-    if article.update(articles_params)
-      render json: article.decorate.article_show
-    else
-      render json: { errors: article.errors }
-    end
+    article = ArticleService.update_article_and_image(articles_params, current_author, images_params)
+    render json: article
   end
 
   def destroy
@@ -41,7 +33,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
     params.require(:articles).permit(:title, :description)
   end
 
-  def article_images_params
+  def images_params
     params.require(:article_images).permit(:image)
   end
 
