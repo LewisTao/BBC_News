@@ -4,4 +4,8 @@ class Article < ActiveRecord::Base
 
   # Association
   belongs_to :author
+  has_many :article_images, dependent: :destroy
+
+  # Nested Attributes
+  accepts_nested_attributes_for :article_images
 end

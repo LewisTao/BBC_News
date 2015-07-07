@@ -12,6 +12,7 @@ class Author < ActiveRecord::Base
 
   # Association
   has_many :articles
+  has_many :article_images
 
   # Before filter
   before_create :email_downcase

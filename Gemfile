@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+# Image upload with paperclip
+gem 'paperclip', '~> 4.3.0'
+
 # Pagination
 gem 'will_paginate', '~> 3.0.7'
 

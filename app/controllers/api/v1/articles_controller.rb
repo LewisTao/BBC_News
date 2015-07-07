@@ -12,7 +12,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   def create
     article = current_author.articles.build(articles_params)
-
+    article.article_images.build(article_images_params.merge!(author_id: current_author.id) )
     if article.save
       render json: article.decorate.article_show
     else
@@ -36,8 +36,13 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   private
+
   def articles_params
     params.require(:articles).permit(:title, :description)
+  end
+
+  def article_images_params
+    params.require(:article_images).permit(:image)
   end
 
 end
