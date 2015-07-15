@@ -13,7 +13,8 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   def create
 
     article = current_author.articles.build(articles_params)
-    article.article_images.build(articles_params[:article_images_attributes])
+    article_image = article.article_images.build(articles_params[:article_images_attributes])
+    article_image.author_id = current_author.id
     if article.save
       render json: article.decorate.article_show
     else
