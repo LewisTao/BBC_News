@@ -8,5 +8,5 @@ class Article < ActiveRecord::Base
 
   # Nested Attributes
   attr_accessor :article_images_attributes
-  accepts_nested_attributes_for :article_images  #, :reject_if => lambda { |image| image['article_image'].nil? }
+  accepts_nested_attributes_for :article_images
 end

@@ -24,6 +24,10 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   def update
     article = Article.find_by!(id: params[:id])
+    unless articles_params[:article_images_attributes].nil?
+      article.article_images.build(articles_params[:article_images_attributes])
+    end
+
     if article.update(articles_params)
       render json: article.decorate.article_show
     else
