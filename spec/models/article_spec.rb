@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
-  before { @artice = FactoryGirl.create :article }
-  subject { @artice }
+  before { @article = FactoryGirl.create :article }
+  subject { @article }
 
   # Default attributes
   it { should respond_to(:title) }
